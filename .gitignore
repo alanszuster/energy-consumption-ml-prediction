@@ -57,3 +57,6 @@ output/
 models/
 *.joblib
 *.pkl
+
+# Hugging Face upload directory (separate repo)
+huggingface_upload/
