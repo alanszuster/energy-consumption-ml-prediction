@@ -34,19 +34,6 @@ CSV with columns: `Date`, `Reading` (meter reading in kWh)
 - `02_model_development.ipynb` - Model testing
 - `03_predictions.ipynb` - Forecasting
 
-## Structure
-
-```text
-├── data/energy_consumption.csv
-├── src/
-│   ├── data_processing.py
-│   ├── model.py
-│   └── visualization.py
-├── notebooks/
-├── export_model_example.py
-└── main.py
-```
-
 ## Pre-trained Model
 
 Want to use the model without training? Download the pre-trained model from [Hugging Face](https://huggingface.co/alanoee/energy_prediction_model):
