@@ -54,3 +54,6 @@ Thumbs.db
 results/
 *.log
 output/
+models/
+*.joblib
+*.pkl
