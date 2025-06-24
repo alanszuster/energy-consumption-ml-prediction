@@ -2,6 +2,8 @@
 
 Predicts household energy consumption using machine learning.
 
+🤗 **Pre-trained model available on Hugging Face:** [alanoee/energy_prediction_model](https://huggingface.co/alanoee/energy_prediction_model)
+
 ## Usage
 
 ```bash
@@ -41,5 +43,17 @@ CSV with columns: `Date`, `Reading` (meter reading in kWh)
 │   ├── model.py
 │   └── visualization.py
 ├── notebooks/
+├── export_model_example.py
 └── main.py
+```
+
+## Pre-trained Model
+
+Want to use the model without training? Download the pre-trained model from [Hugging Face](https://huggingface.co/alanoee/energy_prediction_model):
+
+```bash
+git clone https://huggingface.co/alanoee/energy_prediction_model
+cd energy_prediction_model
+pip install -r requirements.txt
+python example.py
 ```
