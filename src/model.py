@@ -218,14 +218,14 @@ class EnergyConsumptionPredictor:
     def save_model(self, filepath=None, format='joblib'):
         if self.best_model is None:
             raise ValueError("Model must be trained first. Use train() method.")
-        
+
         if filepath is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             extension = 'joblib' if format == 'joblib' else 'pkl'
             filepath = f"energy_model_{self.best_model_name}_{timestamp}.{extension}"
-        
+
         os.makedirs(os.path.dirname(filepath) if os.path.dirname(filepath) else '.', exist_ok=True)
-        
+
         model_data = {
             'best_model': self.best_model,
             'best_model_name': self.best_model_name,
@@ -240,19 +240,19 @@ class EnergyConsumptionPredictor:
                 'feature_count': len(self.feature_columns) if self.feature_columns else 0
             }
         }
-        
+
         if format == 'joblib':
             joblib.dump(model_data, filepath)
         else:
             with open(filepath, 'wb') as f:
                 pickle.dump(model_data, f)
-        
+
         return filepath
-    
+
     def load_model(self, filepath, format='auto'):
         if not os.path.exists(filepath):
             raise FileNotFoundError(f"File {filepath} does not exist.")
-        
+
         if format == 'auto':
             if filepath.endswith('.joblib'):
                 format = 'joblib'
@@ -260,14 +260,14 @@ class EnergyConsumptionPredictor:
                 format = 'pickle'
             else:
                 format = 'joblib'
-        
+
         try:
             if format == 'joblib':
                 model_data = joblib.load(filepath)
             else:
                 with open(filepath, 'rb') as f:
                     model_data = pickle.load(f)
-            
+
             self.best_model = model_data['best_model']
             self.best_model_name = model_data['best_model_name']
             self.scaler = model_data['scaler']
@@ -275,10 +275,10 @@ class EnergyConsumptionPredictor:
             self.data_stats = model_data['data_stats']
             self.models = model_data['models']
             self.baseline_predictions = model_data.get('baseline_predictions')
-            
+
         except Exception as e:
             raise ValueError(f"Error loading model: {str(e)}")
-    
+
     @classmethod
     def from_file(cls, filepath, format='auto'):
         model = cls()
